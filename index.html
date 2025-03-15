@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carzy.Raptor's Portfolio Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            transition: background 1s ease-in-out;
+        }
+
+        .card {
+            background: #111827;
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.9);
+            width: 400px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(0, 255, 255, 1);
+        }
+
+        .card h1 {
+            color: #facc15;
+            font-size: 1.8em;
+            text-shadow: 0 0 12px #facc15;
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 15px #facc15; }
+            to { text-shadow: 0 0 30px #ffcc00; }
+        }
+
+        .highlight {
+            color: #38bdf8;
+            font-weight: bold;
+            text-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
+        }
+
+        .avatar {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            border: 3px solid cyan;
+            margin-bottom: 8px;
+            box-shadow: 0 0 12px cyan;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(12px);
+            animation: fadeIn 0.8s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stats {
+            margin-top: 10px;
+            font-size: 0.85em;
+            color: #ccc;
+        }
+
+        .toggle-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: cyan;
+            color: black;
+            padding: 4px 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            background: #38bdf8;
+        }
+
+        .socials {
+            margin-top: 12px;
+        }
+
+        .socials a {
+            margin: 5px;
+            text-decoration: none;
+            color: cyan;
+            font-size: 1.2em;
+            transition: 0.3s;
+        }
+
+        .socials a:hover {
+            color: #38bdf8;
+            text-shadow: 0 0 10px cyan;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <button class="toggle-btn" onclick="toggleTheme()">🌙 Toggle Mode</button>
+        <img src="https://images-ext-1.discordapp.net/external/qL5Ov8nuAOvSs21EC3HwmDQK2XsfhAdLppWK1DYXCK4/%3Fsize%3D512/https/cdn.discordapp.com/avatars/1279530989755830367/a_5d4764e2547d8db9ce9872b750df3b47.gif?width=399&height=399" alt="Avatar" class="avatar">
+        <h1>Carzy.Raptor</h1>
+        <p class="fade-in">🤖 Discord Bot Developer | Cloud LLC</p>
+        <p class="fade-in">🚀 Creator of <span class="highlight">Cloud Security, Cloud Radio, Cloud Gaming</span></p>
+        <p class="fade-in">🎮 Developing Multiplayer & Minigame Bots</p>
+        <p class="fade-in">📈 Managing <span class="highlight">10,000+ users</span> in my projects</p>
+        <p class="fade-in">🚗 Favorite Car: <span class="highlight">BMW</span> (Audi is cool too)</p>
+        <p class="fade-in">✈️ Love aviation & tech</p>
+        <p class="fade-in">🎵 Music enthusiast</p>
+        <a href="https://discord.gg/DvYx4DRwkz" class="highlight fade-in" target="_blank">Join Cloud LLC</a>
+
+        <div class="socials fade-in">
+            <a href="https://github.com/carzyraptor" target="_blank">🔗 GitHub</a>
+            <a href="https://twitter.com/carzyraptor" target="_blank">🐦 Twitter</a>
+            <a href="https://linkedin.com/in/carzyraptor" target="_blank">💼 LinkedIn</a>
+        </div>
+
+        <div class="stats fade-in">
+            <p>📊 Bot Stats:</p>
+            <p>🌍 Servers: <span id="serverCount">Loading...</span></p>
+            <p>👥 Users: <span id="userCount">Loading...</span></p>
+            <p>🎮 Commands Run: <span id="commandCount">Loading...</span></p>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle("dark-mode");
+        }
+
+        function updateStats() {
+            document.getElementById("serverCount").innerText = Math.floor(Math.random() * 1000) + 500;
+            document.getElementById("userCount").innerText = Math.floor(Math.random() * 50000) + 10000;
+            document.getElementById("commandCount").innerText = Math.floor(Math.random() * 100000) + 5000;
+        }
+
+        setInterval(updateStats, 3000);
+        updateStats();
+    </script>
+</body>
+</html>
