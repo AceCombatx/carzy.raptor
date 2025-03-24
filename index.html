@@ -3,58 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Platin-Like Website</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <title>Flappy Bird Improved</title>
+    <style>
+        body { background: skyblue; margin: 0; overflow: hidden; text-align: center; font-family: Arial, sans-serif; }
+        canvas { display: block; margin: auto; background: lightblue; }
+        #score { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); font-size: 2rem; color: white; }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="logo">PlatinDev</div>
-        <nav>
-            <ul>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <section class="hero">
-        <h1>Professional Development Solutions</h1>
-        <p>Building the future of technology, one project at a time.</p>
-        <a href="#contact" class="btn">Get in Touch</a>
-    </section>
-    
-    <section id="services">
-        <h2>Our Services</h2>
-        <div class="service-container">
-            <div class="service"><i class="fas fa-code"></i> Web Development</div>
-            <div class="service"><i class="fas fa-mobile-alt"></i> App Development</div>
-            <div class="service"><i class="fas fa-cloud"></i> Cloud Solutions</div>
-        </div>
-    </section>
-    
-    <section id="portfolio">
-        <h2>Our Work</h2>
-        <div class="portfolio-container">
-            <div class="project"> <img src="project1.jpg" alt="Project 1"> Project 1</div>
-            <div class="project"> <img src="project2.jpg" alt="Project 2"> Project 2</div>
-            <div class="project"> <img src="project3.jpg" alt="Project 3"> Project 3</div>
-        </div>
-    </section>
-    
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <form>
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Message" required></textarea>
-            <button type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
-        </form>
-    </section>
-    
-    <footer>
-        <p>&copy; 2025 PlatinDev. All Rights Reserved.</p>
-    </footer>
+    <div id="score">Score: 0</div>
+    <canvas id="gameCanvas"></canvas>
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = 400;
+        canvas.height = 500;
+
+        let bird = { x: 50, y: canvas.height / 2, width: 20, height: 20, velocity: 0, gravity: 0.5, lift: -7 };
+        let pipes = [];
+        let pipeWidth = 50, pipeGap = 120, score = 0, gameOver = false;
+
+        function drawBird() {
+            ctx.fillStyle = "yellow";
+            ctx.fillRect(bird.x, bird.y, bird.width, bird.height);
+        }
+
+        function drawPipes() {
+            pipes.forEach(pipe => {
+                ctx.fillStyle = "green";
+                ctx.fillRect(pipe.x, 0, pipeWidth, pipe.top);
+                ctx.fillRect(pipe.x, pipe.top + pipeGap, pipeWidth, canvas.height - pipe.top);
+            });
+        }
+
+        function updatePipes() {
+            pipes.forEach(pipe => {
+                pipe.x -= 2;
+                if (pipe.x + pipeWidth < 0) {
+                    pipes.shift();
+                    score++;
+                    document.getElementById("score").textContent = "Score: " + score;
+                }
+            });
+
+            if (pipes.length === 0 || pipes[pipes.length - 1].x < canvas.width - 200) {
+                let top = Math.random() * (canvas.height - pipeGap - 50) + 50;
+                pipes.push({ x: canvas.width, top });
+            }
+        }
+
+        function checkCollision() {
+            if (bird.y < 0 || bird.y > canvas.height) return true;
+            return pipes.some(pipe => 
+                bird.x + bird.width > pipe.x && bird.x < pipe.x + pipeWidth &&
+                (bird.y < pipe.top || bird.y + bird.height > pipe.top + pipeGap)
+            );
+        }
+
+        function resetGame() {
+            bird.y = canvas.height / 2;
+            bird.velocity = 0;
+            pipes = [];
+            score = 0;
+            document.getElementById("score").textContent = "Score: 0";
+            gameOver = false;
+            requestAnimationFrame(gameLoop);
+        }
+
+        function gameLoop() {
+            if (gameOver) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            bird.velocity += bird.gravity;
+            bird.y += bird.velocity;
+
+            updatePipes();
+            drawBird();
+            drawPipes();
+
+            if (checkCollision()) {
+                gameOver = true;
+                setTimeout(resetGame, 1500);
+            } else {
+                requestAnimationFrame(gameLoop);
+            }
+        }
+
+        document.addEventListener("keydown", () => { if (!gameOver) bird.velocity = bird.lift; });
+
+        gameLoop();
+    </script>
 </body>
 </html>
