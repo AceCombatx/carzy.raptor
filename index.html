@@ -3,95 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flappy Bird Improved</title>
+    <title>Carzy.Raptor's Portfolio Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <style>
-        body { background: skyblue; margin: 0; overflow: hidden; text-align: center; font-family: Arial, sans-serif; }
-        canvas { display: block; margin: auto; background: lightblue; }
-        #score { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); font-size: 2rem; color: white; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            transition: background 1s ease-in-out;
+        }
+
+        .card {
+            background: #111827;
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.9);
+            width: 400px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(0, 255, 255, 1);
+        }
+
+        .card h1 {
+            color: #facc15;
+            font-size: 1.8em;
+            text-shadow: 0 0 12px #facc15;
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 15px #facc15; }
+            to { text-shadow: 0 0 30px #ffcc00; }
+        }
+
+        .highlight {
+            color: #38bdf8;
+            font-weight: bold;
+            text-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
+        }
+
+        .avatar {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            border: 3px solid cyan;
+            margin-bottom: 8px;
+            box-shadow: 0 0 12px cyan;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(12px);
+            animation: fadeIn 0.8s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stats {
+            margin-top: 10px;
+            font-size: 0.85em;
+            color: #ccc;
+        }
+
+        .toggle-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: cyan;
+            color: black;
+            padding: 4px 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            background: #38bdf8;
+        }
+
+        .socials {
+            margin-top: 12px;
+        }
+
+        .socials a {
+            margin: 5px;
+            text-decoration: none;
+            color: cyan;
+            font-size: 1.2em;
+            transition: 0.3s;
+        }
+
+        .socials a:hover {
+            color: #38bdf8;
+            text-shadow: 0 0 10px cyan;
+        }
     </style>
 </head>
 <body>
-    <div id="score">Score: 0</div>
-    <canvas id="gameCanvas"></canvas>
+    <div class="card">
+        <button class="toggle-btn" onclick="toggleTheme()">🌙 Toggle Mode</button>
+        <img src="https://images-ext-1.discordapp.net/external/qL5Ov8nuAOvSs21EC3HwmDQK2XsfhAdLppWK1DYXCK4/%3Fsize%3D512/https/cdn.discordapp.com/avatars/1279530989755830367/a_5d4764e2547d8db9ce9872b750df3b47.gif?width=399&height=399" alt="Avatar" class="avatar">
+        <h1>Carzy.Raptor</h1>
+        <p class="fade-in">🤖 Discord Bot Developer | Cloud LLC</p>
+        <p class="fade-in">🚀 Creator of <span class="highlight">Cloud Security, Cloud Radio, Cloud Gaming</span></p>
+        <p class="fade-in">🎮 Developing Multiplayer & Minigame Bots</p>
+        <p class="fade-in">📈 Managing <span class="highlight">10,000+ users</span> in my projects</p>
+        <p class="fade-in">🚗 Favorite Car: <span class="highlight">BMW</span> (Audi is cool too)</p>
+        <p class="fade-in">✈️ Love aviation & tech</p>
+        <p class="fade-in">🎵 Music enthusiast</p>
+        <a href="https://discord.gg/DvYx4DRwkz" class="highlight fade-in" target="_blank">Join Cloud LLC</a>
+
+        <div class="socials fade-in">
+            <a href="https://github.com/AceCombatx" target="_blank">🔗 GitHub</a>
+            <a href="https://open.spotify.com/playlist/1xGwq2KL9Y7cgeuIxzhXry" target="_blank">🎵 Spotify</a>
+            <a href="https://discord.com/users/1279530989755830367" target="_blank">💬 Discord</a>
+        </div>
+
+        <div class="stats fade-in">
+            <p>📊 Bot Stats:</p>
+            <p>🌍 Servers: <span id="serverCount">Loading...</span></p>
+            <p>👥 Users: <span id="userCount">Loading...</span></p>
+            <p>🎮 Commands Run: <span id="commandCount">Loading...</span></p>
+        </div>
+    </div>
+
     <script>
-        const canvas = document.getElementById("gameCanvas");
-        const ctx = canvas.getContext("2d");
-        canvas.width = 400;
-        canvas.height = 500;
-
-        let bird = { x: 50, y: canvas.height / 2, width: 20, height: 20, velocity: 0, gravity: 0.5, lift: -7 };
-        let pipes = [];
-        let pipeWidth = 50, pipeGap = 120, score = 0, gameOver = false;
-
-        function drawBird() {
-            ctx.fillStyle = "yellow";
-            ctx.fillRect(bird.x, bird.y, bird.width, bird.height);
+        function toggleTheme() {
+            document.body.classList.toggle("dark-mode");
         }
 
-        function drawPipes() {
-            pipes.forEach(pipe => {
-                ctx.fillStyle = "green";
-                ctx.fillRect(pipe.x, 0, pipeWidth, pipe.top);
-                ctx.fillRect(pipe.x, pipe.top + pipeGap, pipeWidth, canvas.height - pipe.top);
-            });
+        function updateStats() {
+            document.getElementById("serverCount").innerText = Math.floor(Math.random() * 1000) + 500;
+            document.getElementById("userCount").innerText = Math.floor(Math.random() * 50000) + 10000;
+            document.getElementById("commandCount").innerText = Math.floor(Math.random() * 100000) + 5000;
         }
 
-        function updatePipes() {
-            pipes.forEach(pipe => {
-                pipe.x -= 2;
-                if (pipe.x + pipeWidth < 0) {
-                    pipes.shift();
-                    score++;
-                    document.getElementById("score").textContent = "Score: " + score;
-                }
-            });
-
-            if (pipes.length === 0 || pipes[pipes.length - 1].x < canvas.width - 200) {
-                let top = Math.random() * (canvas.height - pipeGap - 50) + 50;
-                pipes.push({ x: canvas.width, top });
-            }
-        }
-
-        function checkCollision() {
-            if (bird.y < 0 || bird.y > canvas.height) return true;
-            return pipes.some(pipe => 
-                bird.x + bird.width > pipe.x && bird.x < pipe.x + pipeWidth &&
-                (bird.y < pipe.top || bird.y + bird.height > pipe.top + pipeGap)
-            );
-        }
-
-        function resetGame() {
-            bird.y = canvas.height / 2;
-            bird.velocity = 0;
-            pipes = [];
-            score = 0;
-            document.getElementById("score").textContent = "Score: 0";
-            gameOver = false;
-            requestAnimationFrame(gameLoop);
-        }
-
-        function gameLoop() {
-            if (gameOver) return;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            bird.velocity += bird.gravity;
-            bird.y += bird.velocity;
-
-            updatePipes();
-            drawBird();
-            drawPipes();
-
-            if (checkCollision()) {
-                gameOver = true;
-                setTimeout(resetGame, 1500);
-            } else {
-                requestAnimationFrame(gameLoop);
-            }
-        }
-
-        document.addEventListener("keydown", () => { if (!gameOver) bird.velocity = bird.lift; });
-
-        gameLoop();
+        setInterval(updateStats, 3000);
+        updateStats();
     </script>
 </body>
 </html>
