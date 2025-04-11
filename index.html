@@ -5,1076 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>carzy.raptor | Cloud LLC Co-Founder</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #7209b7;
-            --secondary: #3a0ca3;
-            --accent: #4cc9f0;
-            --accent2: #f72585;
-            --light: #f8f9fa;
-            --dark: #0b0c10;
-            --darker: #1e1533;
-            --form-bg: #231942;
-            --input-bg: #2a1b53;
-            --success: #2ec4b6;
-            --glass: rgba(255, 255, 255, 0.1);
-            --glass-dark: rgba(0, 0, 0, 0.7);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--dark);
-            color: var(--light);
-            overflow-x: hidden;
-            perspective: 1000px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Particle Background */
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 0;
-        }
-
-        /* Header Styles */
-        header {
-            background: rgba(11, 12, 16, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            color: white;
-            padding: 20px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            border-bottom: 1px solid rgba(114, 9, 183, 0.3);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            text-shadow: 0 0 10px var(--accent);
-            position: relative;
-        }
-
-        .logo::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            filter: blur(5px);
-            opacity: 0.5;
-            z-index: -1;
-        }
-
-        .logo span {
-            color: var(--accent);
-            position: relative;
-        }
-
-        .logo span::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background: var(--accent);
-            bottom: -5px;
-            left: 0;
-            box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 30px;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 5px 0;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            transition: width 0.3s ease;
-            box-shadow: 0 0 10px var(--accent);
-        }
-
-        .nav-links a:hover::before {
-            width: 100%;
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: var(--accent);
-            text-shadow: 0 0 10px var(--accent);
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            background: url('https://i.imgur.com/v5h6ito.jpeg') center/cover;
-            position: relative;
-            margin-top: 0;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--glass-dark);
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            color: white;
-            max-width: 800px;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-
-        .hero h1 {
-            font-size: 4.5rem;
-            margin-bottom: 20px;
-            animation: glitchText 5s infinite;
-            text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
-            position: relative;
-        }
-
-        @keyframes glitchText {
-            0% {
-                text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
-            }
-            5% {
-                text-shadow: -2px 0 var(--accent2), 2px 0 var(--accent);
-            }
-            10% {
-                text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
-            }
-            15% {
-                text-shadow: -2px 0 var(--accent), 2px 0 var(--accent2);
-            }
-            16% {
-                text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
-            }
-            100% {
-                text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
-            }
-        }
-
-        .hero h2 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: var(--accent);
-            animation: fadeInUp 1s ease 0.2s;
-            animation-fill-mode: both;
-            text-shadow: 0 0 5px var(--accent);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            line-height: 1.6;
-            animation: fadeInUp 1s ease 0.4s;
-            animation-fill-mode: both;
-            text-shadow: 0 0 2px var(--light);
-            backdrop-filter: blur(5px);
-            padding: 15px;
-            border-radius: 10px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(76, 201, 240, 0.3);
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 15px 35px;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            animation: fadeInUp 1s ease 0.6s;
-            animation-fill-mode: both;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            box-shadow: 0 5px 15px rgba(114, 9, 183, 0.5);
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, var(--accent), var(--accent2));
-            transition: all 0.5s ease;
-            z-index: -1;
-        }
-
-        .btn:hover::before {
-            left: 0;
-        }
-
-        .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(114, 9, 183, 0.7);
-        }
-
-        /* About Section */
-        .about {
-            padding: 120px 0;
-            background-color: var(--dark);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about::before {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, var(--primary), transparent 70%);
-            top: -150px;
-            right: -150px;
-            border-radius: 50%;
-            filter: blur(50px);
-            opacity: 0.3;
-            z-index: 0;
-        }
-
-        .about::after {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, var(--accent), transparent 70%);
-            bottom: -200px;
-            left: -200px;
-            border-radius: 50%;
-            filter: blur(70px);
-            opacity: 0.2;
-            z-index: 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-            position: relative;
-        }
-
-        .section-title h2 {
-            font-size: 3rem;
-            color: var(--light);
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            bottom: -10px;
-            left: 0;
-            border-radius: 10px;
-            box-shadow: 0 0 10px var(--accent);
-        }
-
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .about-img {
-            flex: 1;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transition: all 0.5s ease;
-            position: relative;
-            transform-style: preserve-3d;
-            transform: perspective(1000px) rotateY(0deg);
-        }
-
-        .about-img:hover {
-            transform: perspective(1000px) rotateY(10deg);
-            box-shadow: -20px 20px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .about-img::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, var(--primary), transparent);
-            opacity: 0.3;
-            z-index: 1;
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: all 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text {
-            flex: 1;
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 20px;
-            background: rgba(11, 12, 16, 0.5);
-            border: 1px solid rgba(114, 9, 183, 0.3);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .about-text h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: var(--accent);
-            text-shadow: 0 0 5px var(--accent);
-        }
-
-        .about-text p {
-            margin-bottom: 20px;
-            line-height: 1.7;
-            color: var(--light);
-        }
-
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .skill-tag {
-            padding: 10px 20px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            color: white;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-tag::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent 70%);
-            opacity: 0;
-            transition: all 0.5s ease;
-        }
-
-        .skill-tag:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .skill-tag:hover::before {
-            opacity: 1;
-            transform: scale(1.5);
-        }
-
-        /* Projects Section */
-        .projects {
-            padding: 120px 0;
-            background-color: var(--dark);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .projects::before {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, var(--accent), transparent 70%);
-            top: 50%;
-            right: -250px;
-            border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.1;
-            z-index: 0;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .project-card {
-            background: rgba(11, 12, 16, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            transition: all 0.5s ease;
-            border: 1px solid rgba(114, 9, 183, 0.3);
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-
-        .project-card:hover {
-            transform: translateY(-20px) rotateX(5deg);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-        }
-
-        .project-img {
-            height: 220px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .project-img::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent, var(--dark));
-            z-index: 1;
-        }
-
-        .project-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s ease;
-        }
-
-        .project-card:hover .project-img img {
-            transform: scale(1.1);
-        }
-
-        .project-content {
-            padding: 30px;
-            position: relative;
-        }
-
-        .project-content::before {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            top: -25px;
-            left: 30px;
-            border-radius: 50%;
-            filter: blur(20px);
-            opacity: 0.5;
-        }
-
-        .project-content h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: var(--accent);
-            text-shadow: 0 0 5px rgba(76, 201, 240, 0.5);
-        }
-
-        .project-content p {
-            color: var(--light);
-            margin-bottom: 25px;
-            line-height: 1.6;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .project-links a {
-            color: var(--accent);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-            padding: 10px 20px;
-            border-radius: 30px;
-            background: rgba(58, 12, 163, 0.3);
-            border: 1px solid rgba(76, 201, 240, 0.3);
-        }
-
-        .project-links a:hover {
-            background: rgba(76, 201, 240, 0.2);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Experience Section */
-        .experience {
-            padding: 120px 0;
-            background-color: var(--dark);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .experience::before {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, var(--primary), transparent 70%);
-            bottom: -200px;
-            right: -200px;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.2;
-            z-index: 0;
-        }
-
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 0;
-            z-index: 1;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            width: 4px;
-            background: linear-gradient(to bottom, var(--primary), var(--accent));
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            box-shadow: 0 0 10px rgba(76, 201, 240, 0.5);
-        }
-
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            width: 50%;
-            box-sizing: border-box;
-            margin-bottom: 50px;
-            transition: all 0.5s ease;
-        }
-
-        .timeline-item:nth-child(odd) {
-            left: 0;
-            transform: translateX(-30px);
-        }
-
-        .timeline-item:nth-child(even) {
-            left: 50%;
-            transform: translateX(30px);
-        }
-
-        .timeline-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .timeline-item:nth-child(odd):hover {
-            transform: translateX(-30px) translateY(-10px);
-        }
-
-        .timeline-item:nth-child(even):hover {
-            transform: translateX(30px) translateY(-10px);
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 24px;
-            height: 24px;
-            background-color: var(--dark);
-            border: 4px solid var(--accent);
-            border-radius: 50%;
-            top: 15px;
-            z-index: 1;
-            box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
-            transition: all 0.3s ease;
-        }
-
-        .timeline-item:hover::after {
-            transform: scale(1.2);
-            box-shadow: 0 0 15px var(--accent), 0 0 30px var(--accent);
-        }
-
-        .timeline-item:nth-child(odd)::after {
-            right: -12px;
-        }
-
-        .timeline-item:nth-child(even)::after {
-            left: -12px;
-        }
-
-        .timeline-content {
-            padding: 30px;
-            background: rgba(11, 12, 16, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: all 0.5s ease;
-            border: 1px solid rgba(114, 9, 183, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .timeline-content::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(114, 9, 183, 0.1), rgba(76, 201, 240, 0.1));
-            top: 0;
-            left: 0;
-            opacity: 0;
-            transition: all 0.5s ease;
-        }
-
-        .timeline-content:hover {
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .timeline-content:hover::before {
-            opacity: 1;
-        }
-
-        .timeline-date {
-            color: var(--accent);
-            font-weight: bold;
-            margin-bottom: 15px;
-            display: block;
-            font-size: 1.1rem;
-            text-shadow: 0 0 5px rgba(76, 201, 240, 0.5);
-        }
-
-        .timeline-content h3 {
-            margin-bottom: 15px;
-            color: var(--light);
-            font-size: 1.5rem;
-        }
-
-        .timeline-content p {
-            color: var(--light);
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 120px 0;
-            background: var(--form-bg);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('/placeholder.svg?height=1080&width=1920') center/cover;
-            opacity: 0.05;
-            z-index: 0;
-        }
-
-        .contact-content {
-            display: flex;
-            flex-direction: column;
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .contact-info {
-            margin-bottom: 50px;
-            text-align: center;
-        }
-
-        .contact-info h3 {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-            color: var(--light);
-        }
-
-        .contact-info p {
-            margin-bottom: 30px;
-            line-height: 1.7;
-            color: var(--light);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .contact-details {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .contact-item i {
-            font-size: 1.5rem;
-            color: var(--accent);
-            text-shadow: 0 0 5px var(--accent);
-        }
-
-        .contact-form {
-            width: 100%;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 500;
-            color: var(--light);
-            font-size: 1.1rem;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 15px;
-            background-color: var(--input-bg);
-            border: none;
-            border-radius: 8px;
-            color: white;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-control:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(76, 201, 240, 0.5);
-        }
-
-        textarea.form-control {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        .submit-btn {
-            background: linear-gradient(90deg, #7209b7, #4cc9f0);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Success Message */
-        .success-message {
-            background: rgba(46, 196, 182, 0.2);
-            border: 1px solid var(--success);
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-            display: none;
-        }
-
-        .success-message.show {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 40px 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        footer::before {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, var(--primary), transparent 70%);
-            top: -150px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 50%;
-            filter: blur(70px);
-            opacity: 0.1;
-            z-index: 0;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin-bottom: 30px;
-        }
-
-        .social-links a {
-            color: white;
-            font-size: 1.8rem;
-            transition: all 0.3s ease;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(58, 12, 163, 0.3);
-            border-radius: 50%;
-            border: 1px solid rgba(76, 201, 240, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .social-links a::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            top: 100%;
-            left: 0;
-            transition: all 0.3s ease;
-            z-index: -1;
-        }
-
-        .social-links a:hover::before {
-            top: 0;
-        }
-
-        .social-links a:hover {
-            color: white;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            border-color: transparent;
-        }
-
-        .footer-text {
-            font-size: 1rem;
-            color: #aaa;
-            margin-top: 20px;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .about-content {
-                flex-direction: column;
-            }
-
-            .timeline::before {
-                left: 30px;
-            }
-
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 0;
-            }
-
-            .timeline-item:nth-child(even) {
-                left: 0;
-            }
-
-            .timeline-item:nth-child(odd),
-            .timeline-item:nth-child(even) {
-                transform: translateX(0);
-            }
-
-            .timeline-item:nth-child(odd):hover,
-            .timeline-item:nth-child(even):hover {
-                transform: translateY(-10px);
-            }
-
-            .timeline-item::after {
-                left: 18px;
-            }
-
-            .timeline-item:nth-child(odd)::after {
-                right: auto;
-                left: 18px;
-            }
-
-            .contact-content {
-                flex-direction: column;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background: rgba(11, 12, 16, 0.9);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                align-items: center;
-                padding: 20px 0;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-                border-bottom: 1px solid rgba(76, 201, 240, 0.3);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links li {
-                margin: 15px 0;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .hero h2 {
-                font-size: 1.5rem;
-            }
-
-            .section-title h2 {
-                font-size: 2.2rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Particle Background -->
     <div id="particles-js"></div>
+    
+    <!-- Background Gradients -->
+    <div class="bg-gradient bg-gradient-1"></div>
+    <div class="bg-gradient bg-gradient-2"></div>
+    <div class="bg-gradient bg-gradient-3"></div>
 
     <!-- Header -->
     <header>
@@ -1082,6 +23,7 @@
             <nav>
                 <div class="logo">
                     carzy.<span>raptor</span>
+                    <div class="logo-glow"></div>
                 </div>
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
@@ -1100,11 +42,34 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
-            <div class="hero-content">
-                <h1 class="glitch-effect">carzy.raptor</h1>
-                <h2>Co-Founder @ Cloud LLC</h2>
-                <p>Innovator, developer, and entrepreneur specializing in Discord technologies. Creator of Cloud Gaming, Cloud Security, and Cloud Radio bots for Discord communities.</p>
-                <a href="#projects" class="btn">View My Work</a>
+            <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+                <div class="hero-text-wrapper">
+                    <h1 class="glitch-effect" data-text="carzy.raptor">carzy.raptor</h1>
+                    <div class="typing-container">
+                        <h2 id="typing-text"></h2>
+                        <div class="cursor"></div>
+                    </div>
+                    <p>Innovator, developer, and entrepreneur specializing in Discord technologies. Creator of Cloud Gaming, Cloud Security, and Cloud Radio bots for Discord communities.</p>
+                    <a href="#projects" class="btn">
+                        <span>View My Work</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="hero-shapes">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                    <div class="shape shape-3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <div class="arrow">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </section>
@@ -1112,25 +77,30 @@
     <!-- About Section -->
     <section class="about" id="about">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up">
                 <h2>About Me</h2>
+                <div class="title-bar"></div>
             </div>
             <div class="about-content">
-                <div class="about-img">
-                    <img src="https://i.imgur.com/v5h6ito.jpeg" alt="carzy.raptor">
+                <div class="about-img" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="img-container">
+                        <img src="https://i.imgur.com/v5h6ito.jpeg" alt="carzy.raptor">
+                        <div class="img-frame"></div>
+                    </div>
+                    <div class="img-glow"></div>
                 </div>
-                <div class="about-text">
+                <div class="about-text" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
                     <h3>Discord Bot Developer & Innovator</h3>
                     <p>Hello! I'm carzy.raptor, a passionate tech entrepreneur and co-founder of Cloud LLC, a Discord-based company. With a strong background in bot development and Discord technologies, I've dedicated my career to creating innovative solutions that enhance community experiences.</p>
                     <p>Based in England, I've been working on cutting-edge Discord bots since December 2023. My journey led to co-founding Cloud LLC, where I've developed a suite of specialized bots that are revolutionizing how users interact with Discord servers.</p>
                     <div class="skills">
-                        <span class="skill-tag">Discord Bot Development</span>
-                        <span class="skill-tag">Community Management</span>
-                        <span class="skill-tag">Security Systems</span>
-                        <span class="skill-tag">Gaming Technologies</span>
-                        <span class="skill-tag">Media Streaming</span>
-                        <span class="skill-tag">Business Strategy</span>
-                        <span class="skill-tag">Team Leadership</span>
+                        <div class="skill-tag">Discord Bot Development</div>
+                        <div class="skill-tag">Community Management</div>
+                        <div class="skill-tag">Security Systems</div>
+                        <div class="skill-tag">Gaming Technologies</div>
+                        <div class="skill-tag">Media Streaming</div>
+                        <div class="skill-tag">Business Strategy</div>
+                        <div class="skill-tag">Team Leadership</div>
                     </div>
                 </div>
             </div>
@@ -1140,48 +110,88 @@
     <!-- Projects Section -->
     <section class="projects" id="projects">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up">
                 <h2>My Projects</h2>
+                <div class="title-bar"></div>
             </div>
             <div class="projects-grid">
                 <!-- Cloud Gaming Bot -->
-                <div class="project-card">
+                <div class="project-card" data-aos="zoom-in" data-aos-duration="800">
                     <div class="project-img">
                         <img src="https://i.imgur.com/jYUW83V.png" alt="Cloud Gaming Bot">
+                        <div class="project-overlay">
+                            <a href="https://discord.com/oauth2/authorize?client_id=1345853346296234004" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3>Cloud Gaming Bot</h3>
                         <p>A sophisticated Discord bot designed to enhance gaming experiences with features like game stats tracking, matchmaking, tournament organization, and in-game assistance for server communities.</p>
                         <div class="project-links">
-                            <a href="https://discord.com/oauth2/authorize?client_id=1345853346296234004"><i class="fas fa-link"></i> View Demo</a>
+                            <a href="https://discord.com/oauth2/authorize?client_id=1345853346296234004" class="btn-small">
+                                <span>View Demo</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                        <div class="project-tech">
+                            <span>Discord.js</span>
+                            <span>Node.js</span>
+                            <span>API Integration</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Cloud Security Bot -->
-                <div class="project-card">
+                <div class="project-card" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
                     <div class="project-img">
                         <img src="https://i.imgur.com/3X0jo4x.png" alt="Cloud Security Bot">
+                        <div class="project-overlay">
+                            <a href="https://discord.com/oauth2/authorize?client_id=1342380987035680778" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3>Cloud Security Bot</h3>
                         <p>An advanced security solution for Discord servers that provides real-time threat detection, anti-raid protection, verification systems, and automated moderation to keep communities safe.</p>
                         <div class="project-links">
-                            <a href="https://discord.com/oauth2/authorize?client_id=1342380987035680778"><i class="fas fa-link"></i> View Demo</a>
+                            <a href="https://discord.com/oauth2/authorize?client_id=1342380987035680778" class="btn-small">
+                                <span>View Demo</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                        <div class="project-tech">
+                            <span>Discord.js</span>
+                            <span>Machine Learning</span>
+                            <span>Security Protocols</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Cloud Radio Bot -->
-                <div class="project-card">
+                <div class="project-card" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="400">
                     <div class="project-img">
                         <img src="https://i.imgur.com/VfiMy4H.png" alt="Cloud Radio Bot">
+                        <div class="project-overlay">
+                            <a href="https://discord.com/discovery/applications/1347644737565491220/store/1348364658095951893" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
                     </div>
                     <div class="project-content">
                         <h3>Cloud Radio Bot</h3>
                         <p>A versatile media streaming bot for Discord that delivers high-quality music, personalized playlists, radio stations, and interactive audio experiences for server members.</p>
                         <div class="project-links">
-                            <a href="https://discord.com/discovery/applications/1347644737565491220/store/1348364658095951893"><i class="fas fa-link"></i> View Demo</a>
+                            <a href="https://discord.com/discovery/applications/1347644737565491220/store/1348364658095951893" class="btn-small">
+                                <span>View Demo</span>
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                        <div class="project-tech">
+                            <span>Discord.js</span>
+                            <span>Audio Processing</span>
+                            <span>Streaming Technologies</span>
                         </div>
                     </div>
                 </div>
@@ -1192,24 +202,34 @@
     <!-- Experience Section -->
     <section class="experience" id="experience">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up">
                 <h2>My Experience</h2>
+                <div class="title-bar"></div>
             </div>
             <div class="timeline">
-                <div class="timeline-item">
+                <div class="timeline-item" data-aos="fade-right" data-aos-duration="800">
                     <div class="timeline-content">
+                        <div class="timeline-year">2025</div>
                         <span class="timeline-date">2025 - Present</span>
                         <h3>Co-Founder & CTO</h3>
-                        <p>Cloud LLC (Discord-based Company)</p>
+                        <p class="timeline-company">Cloud LLC (Discord-based Company)</p>
                         <p>Leading the technical vision and development of Discord-based solutions. Overseeing the creation and evolution of Cloud Bots suite of products for server communities.</p>
+                        <div class="timeline-icon">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
                     </div>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-line"></div>
+                <div class="timeline-item" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
                     <div class="timeline-content">
+                        <div class="timeline-year">2023</div>
                         <span class="timeline-date">Dec 2023 - 2025</span>
                         <h3>Discord Bot Developer</h3>
-                        <p>Freelance</p>
+                        <p class="timeline-company">Freelance</p>
                         <p>Developed custom Discord bots for various communities and businesses. Specialized in gaming, security, and media streaming solutions.</p>
+                        <div class="timeline-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1219,50 +239,90 @@
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up">
                 <h2>Get In Touch</h2>
+                <div class="title-bar"></div>
             </div>
             <div class="contact-content">
-                <div class="contact-info">
+                <div class="contact-info" data-aos="fade-right" data-aos-duration="800">
                     <h3>Let's Connect</h3>
-                    <p>Interested in custom Discord bots or learning more about my work? Feel free to reach out through the contact form below.</p>
+                    <p>Interested in custom Discord bots or learning more about my work? Feel free to reach out through the contact form or directly via the channels below.</p>
                     <div class="contact-details">
                         <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>zeusnitro269@gmail.com</span>
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <span>zeusnitro269@gmail.com</span>
+                            </div>
                         </div>
                         <div class="contact-item">
-                            <i class="fab fa-discord"></i>
-                            <span>carzy.raptor</span>
+                            <div class="contact-icon">
+                                <i class="fab fa-discord"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Discord</h4>
+                                <span>carzy.raptor</span>
+                            </div>
                         </div>
                         <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>England, United Kingdom</span>
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Location</h4>
+                                <span>England, United Kingdom</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="contact-form">
+                <div class="contact-form" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
                     <form id="contactForm">
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" class="form-control" required>
+                            <div class="form-field">
+                                <input type="text" id="name" class="form-control" placeholder=" " required>
+                                <label for="name">Name</label>
+                                <div class="form-border"></div>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" required>
+                            <div class="form-field">
+                                <input type="email" id="email" class="form-control" placeholder=" " required>
+                                <label for="email">Email</label>
+                                <div class="form-border"></div>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" class="form-control" required>
+                            <div class="form-field">
+                                <input type="text" id="subject" class="form-control" placeholder=" " required>
+                                <label for="subject">Subject</label>
+                                <div class="form-border"></div>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" class="form-control" required></textarea>
+                            <div class="form-field">
+                                <textarea id="message" class="form-control" placeholder=" " required></textarea>
+                                <label for="message">Message</label>
+                                <div class="form-border"></div>
+                            </div>
                         </div>
-                        <button type="submit" class="submit-btn">Send Message</button>
+                        <button type="submit" class="submit-btn">
+                            <span>Send Message</span>
+                            <svg class="submit-btn-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22 2L11 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
                     </form>
                     <div class="success-message" id="successMessage">
-                        Your message has not been sent successfully! I will not get back to you soon as this does not work to contact me use my email.
+                        <div class="success-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="success-text">
+                            <h4>Note:</h4>
+                            <p>Your message has not been sent successfully! I will not get back to you soon as this does not work to contact me, please use my email.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1272,259 +332,24 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="social-links">
-                <a href="https://discord.com/users/1279530989755830367"><i class="fab fa-discord"></i></a>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    carzy.<span>raptor</span>
+                </div>
+                <div class="social-links">
+                    <a href="https://discord.com/users/1279530989755830367" class="social-link">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                </div>
             </div>
+            <div class="footer-divider"></div>
             <p class="footer-text">&copy; 2025 carzy.raptor | Cloud LLC. All rights reserved.</p>
         </div>
     </footer>
 
     <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        // Particle.js Configuration
-        particlesJS("particles-js", {
-            particles: {
-                number: {
-                    value: 80,
-                    density: {
-                        enable: true,
-                        value_area: 800
-                    }
-                },
-                color: {
-                    value: "#4cc9f0"
-                },
-                shape: {
-                    type: "circle",
-                    stroke: {
-                        width: 0,
-                        color: "#000000"
-                    },
-                    polygon: {
-                        nb_sides: 5
-                    }
-                },
-                opacity: {
-                    value: 0.5,
-                    random: true,
-                    anim: {
-                        enable: true,
-                        speed: 1,
-                        opacity_min: 0.1,
-                        sync: false
-                    }
-                },
-                size: {
-                    value: 3,
-                    random: true,
-                    anim: {
-                        enable: true,
-                        speed: 2,
-                        size_min: 0.1,
-                        sync: false
-                    }
-                },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: "#7209b7",
-                    opacity: 0.4,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 1,
-                    direction: "none",
-                    random: true,
-                    straight: false,
-                    out_mode: "out",
-                    bounce: false,
-                    attract: {
-                        enable: false,
-                        rotateX: 600,
-                        rotateY: 1200
-                    }
-                }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: {
-                    onhover: {
-                        enable: true,
-                        mode: "grab"
-                    },
-                    onclick: {
-                        enable: true,
-                        mode: "push"
-                    },
-                    resize: true
-                },
-                modes: {
-                    grab: {
-                        distance: 140,
-                        line_linked: {
-                            opacity: 1
-                        }
-                    },
-                    bubble: {
-                        distance: 400,
-                        size: 40,
-                        duration: 2,
-                        opacity: 8,
-                        speed: 3
-                    },
-                    repulse: {
-                        distance: 200,
-                        duration: 0.4
-                    },
-                    push: {
-                        particles_nb: 4
-                    },
-                    remove: {
-                        particles_nb: 2
-                    }
-                }
-            },
-            retina_detect: true
-        });
-
-        // Mobile Navigation Toggle
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.querySelector('.nav-links');
-
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            hamburger.innerHTML = navLinks.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                // Close mobile menu if open
-                if (navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-                }
-
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Form Submission with Validation
-        const contactForm = document.getElementById('contactForm');
-        const successMessage = document.getElementById('successMessage');
-        
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            // Basic validation
-            if (!name || !email || !subject || !message) {
-                alert('Please fill in all fields');
-                return;
-            }
-            
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address');
-                return;
-            }
-            
-            // Here you would typically send the form data to a server
-            // For now, we'll just show a success message
-            
-            // Show success message
-            successMessage.classList.add('show');
-            
-            // Reset the form
-            contactForm.reset();
-            
-            // Hide success message after 5 seconds
-            setTimeout(() => {
-                successMessage.classList.remove('show');
-            }, 5000);
-        });
-
-        // Scroll Animation
-        window.addEventListener('scroll', function() {
-            const scrollPosition = window.scrollY;
-            
-            // Animate elements when they come into view
-            document.querySelectorAll('.project-card, .timeline-item, .about-img, .contact-info, .contact-form').forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementPosition < windowHeight - 100) {
-                    element.style.opacity = '1';
-                    element.style.transform = element.classList.contains('contact-info') 
-                        ? 'rotateY(0)' 
-                        : element.classList.contains('contact-form')
-                            ? 'rotateY(0)'
-                            : element.classList.contains('timeline-item')
-                                ? element.classList.contains('timeline-item:nth-child(odd)')
-                                    ? 'translateX(-30px) translateY(0)'
-                                    : 'translateX(30px) translateY(0)'
-                                : 'translateY(0)';
-                }
-            });
-        });
-
-        // Add initial animation styles
-        document.addEventListener('DOMContentLoaded', function() {
-            const animatedElements = document.querySelectorAll('.project-card, .timeline-item, .about-img, .contact-info, .contact-form');
-            
-            animatedElements.forEach(element => {
-                element.style.opacity = '0';
-                element.style.transform = element.classList.contains('contact-info') 
-                    ? 'rotateY(-5deg) translateY(20px)' 
-                    : element.classList.contains('contact-form')
-                        ? 'rotateY(5deg) translateY(20px)'
-                        : 'translateY(20px)';
-                element.style.transition = 'all 0.8s ease';
-            });
-            
-            // Trigger initial animation for elements in view
-            setTimeout(() => {
-                window.dispatchEvent(new Event('scroll'));
-            }, 300);
-        });
-
-        // 3D Tilt Effect
-        const cards = document.querySelectorAll('.project-card, .about-img');
-        
-        cards.forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = (y - centerY) / 20;
-                const rotateY = (centerX - x) / 20;
-                
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = '';
-                card.style.transition = 'transform 0.5s ease';
-            });
-        });
-    </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
