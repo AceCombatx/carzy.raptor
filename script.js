@@ -1,7 +1,4 @@
 // Particle.js Configuration
-// Assuming particlesJS is a global function provided by a library, no declaration needed here.
-// If it's part of a module, you'd need to import it.
-
 particlesJS("particles-js", {
   particles: {
     number: {
@@ -47,7 +44,7 @@ particlesJS("particles-js", {
     line_linked: {
       enable: true,
       distance: 150,
-      color: "#7209b7",
+      color: "#4361ee",
       opacity: 0.4,
       width: 1,
     },
@@ -109,8 +106,6 @@ particlesJS("particles-js", {
 })
 
 // Initialize AOS (Animate On Scroll)
-// Assuming AOS is a global object provided by a library, no declaration needed here.
-// If it's part of a module, you'd need to import it.
 AOS.init({
   once: false,
   mirror: true,
@@ -195,11 +190,12 @@ window.addEventListener("scroll", () => {
   }
 })
 
-// Form Submission with Validation
+// Form Submission with Discord Webhook
 const contactForm = document.getElementById("contactForm")
 const successMessage = document.getElementById("successMessage")
+const errorMessage = document.getElementById("errorMessage")
 
-contactForm.addEventListener("submit", (e) => {
+contactForm.addEventListener("submit", async (e) => {
   e.preventDefault()
 
   // Get form values
@@ -221,19 +217,74 @@ contactForm.addEventListener("submit", (e) => {
     return
   }
 
-  // Here you would typically send the form data to a server
-  // For now, we'll just show a success message
+  try {
+    // Send to Discord webhook
+    const webhookUrl = "https://discord.com/api/webhooks/1360409737128054925/6NQstSpG4HzB0rg6dfEWwKw7nEZPDCrGG3VFy00mA5pGKdTpLcVB0fNwKPnEvJw0yQSq"
+    
+    const response = await fetch(webhookUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        embeds: [{
+          title: `New Contact Form Submission: ${subject}`,
+          color: 4886754, // #4A9DF9 in decimal
+          fields: [
+            {
+              name: "Name",
+              value: name,
+              inline: true
+            },
+            {
+              name: "Email",
+              value: email,
+              inline: true
+            },
+            {
+              name: "Message",
+              value: message
+            }
+          ],
+          footer: {
+            text: "Sent from carzy.raptor's Portfolio"
+          },
+          timestamp: new Date().toISOString()
+        }]
+      })
+    })
 
-  // Show success message
-  successMessage.classList.add("show")
-
-  // Reset the form
-  contactForm.reset()
-
-  // Hide success message after 5 seconds
-  setTimeout(() => {
-    successMessage.classList.remove("show")
-  }, 5000)
+    if (response.ok) {
+      // Show success message
+      successMessage.classList.add("show")
+      
+      // Reset the form
+      contactForm.reset()
+      
+      // Hide success message after 5 seconds
+      setTimeout(() => {
+        successMessage.classList.remove("show")
+      }, 5000)
+    } else {
+      // Show error message
+      errorMessage.classList.add("show")
+      
+      // Hide error message after 5 seconds
+      setTimeout(() => {
+        errorMessage.classList.remove("show")
+      }, 5000)
+    }
+  } catch (error) {
+    console.error("Error sending message:", error)
+    
+    // Show error message
+    errorMessage.classList.add("show")
+    
+    // Hide error message after 5 seconds
+    setTimeout(() => {
+      errorMessage.classList.remove("show")
+    }, 5000)
+  }
 })
 
 // 3D Tilt Effect for cards
